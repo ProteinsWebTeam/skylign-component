@@ -2,9 +2,15 @@
   "name": "skylign",
   "version": "0.0.1",
   "description": "A component for viewing Skylign Protein HMM Logos ",
-  "main": "index.js",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -16,12 +22,25 @@
     "hmmer",
     "interpro",
     "protein",
-    "sequences"
+    "sequences",
+    "EMBL",
+    "EBI"
   ],
   "author": "maq",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ProteinsWebTeam/skylign-component/issues"
   },
-  "homepage": "https://github.com/ProteinsWebTeam/skylign-component#readme"
+  "homepage": "https://github.com/ProteinsWebTeam/skylign-component#readme",
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.4.4",
+    "jquery": "^3.5.1",
+    "less": "^3.12.2",
+    "modernizr": "^3.11.3",
+    "scroller": "0.0.3"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.11.0",
+    "jest": "^26.4.1"
+  }
 }
