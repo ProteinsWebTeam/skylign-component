@@ -1,8 +1,11 @@
 class Skylign extends HTMLElement {
   constructor(...args) {
-    const self = super(...args);
-    const shadow = this.attachShadow({mode: 'open'});
-
+    super(...args);
+    this.attachShadow({mode: 'open'});
+    //test
+    const test = document.createElement('span');
+    test.innerHTML = "Testing span";
+    this.shadowRoot.append(test);
   }
 
   connectedCallback() {
