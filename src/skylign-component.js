@@ -1,10 +1,15 @@
+//import hmmLogo from './skylign.js';
+
 class Skylign extends HTMLElement {
   constructor(...args) {
     super(...args);
+    console.log(`constructor`);
     this.attachShadow({mode: 'open'});
-    //test
+    const data = this.getAttribute('logo');
     const test = document.createElement('span');
-    test.innerHTML = "Testing span";
+    const text = document.createElement('p');
+    text.innerHTML = data;
+    test.appendChild(text);
     this.shadowRoot.append(test);
   }
 
