@@ -1,20 +1,21 @@
-//import hmmLogo from './skylign.js';
+import hmmLogo from './skylign-test.js';
 
 class Skylign extends HTMLElement {
   constructor(...args) {
-    super(...args);
+    super();
     console.log(`constructor`);
     this.attachShadow({mode: 'open'});
-    const data = this.getAttribute('logo');
+
+    const temp = new hmmLogo();
     const test = document.createElement('span');
     const text = document.createElement('p');
-    text.innerHTML = data;
+    text.innerHTML = "Test";
     test.appendChild(text);
     this.shadowRoot.append(test);
   }
 
   connectedCallback() {
-    console.log(`added ${self.isConnected}`);
+    console.log(`added`);
   }
 
   disconnectedCallback() {
@@ -24,8 +25,6 @@ class Skylign extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     console.log("attribute changed");
   }
-
-
 }
 
 export default Skylign;

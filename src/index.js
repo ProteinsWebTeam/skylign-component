@@ -1,8 +1,8 @@
 import Skylign from "./skylign-component.js";
 
-customElements.define("skylign-component", Skylign);
+//customElements.define("skylign-component", Skylign);
 
-/*
+
 const loadComponent = () => {
   customElements.define("skylign-component", Skylign);
 };
@@ -17,4 +17,3 @@ if (window.customElements) {
 }
 
 export default Skylign;
-*/
