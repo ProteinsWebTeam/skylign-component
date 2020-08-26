@@ -11,8 +11,8 @@
   ],
   "scripts": {
     "test": "jest",
-    "build": "webpack --mode development",
-    "dev": "webpack-dev-server --mode development --port 8765 --open"
+    "build": "webpack",
+    "dev": "webpack-dev-server --mode development --open"
   },
   "repository": {
     "type": "git",
@@ -43,9 +43,14 @@
     "scroller": "0.0.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.4",
     "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
     "css-loader": "^4.2.2",
     "jest": "^26.4.1",
-    "style-loader": "^1.2.1"
+    "mini-css-extract-plugin": "^0.10.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   }
 }
