@@ -1,6 +1,5 @@
 import {EasyScroller} from 'easyscroller';
 import styles from './logo.css';
-//import styles from './style.css';
 
 const FEATURE_HEIGHT = 10;
 const MARGIN_TO_FEATURES = 10;
@@ -995,10 +994,10 @@ const HMMLogo = function(element, options = {}) {
     )) {
       yElement.remove();
     }
-
     for (const xAxis of this.called_on.getElementsByClassName(
       styles.logo_xaxis,
     )) {
+      console.log(`X-axis: ${xAxis} => ${styles.logo_xaxis}`);
       const canvas = document.createElement('canvas');
       canvas.classList.add(styles.logo_yaxis);
       canvas.height = 302;
@@ -1647,7 +1646,6 @@ const hmmLogo = function(logoElement, options = {}) {
   // add some internal divs for scrolling etc.
   const logoGraphic = document.createElement('div');
   logoGraphic.classList.add(styles.logo_graphic);
-
   const logoContainer = document.createElement('div');
   logoContainer.classList.add(styles.logo_container);
 
@@ -1701,7 +1699,6 @@ const hmmLogo = function(logoElement, options = {}) {
 
   const logo = new HMMLogo(logoElement, options);
   logo.render(options);
-
   if (logo.zoom_enabled) {
     const outButton = document.createElement('button');
     outButton.classList.add(styles.button);
