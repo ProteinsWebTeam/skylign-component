@@ -1,30 +1,31 @@
 import hmmLogo from './skylign.js';
+import css from './logo.css';
 
 class Skylign extends HTMLElement {
   constructor(...args) {
     super();
-    console.log(`constructor`);
     this.attachShadow({mode: 'open'});
+    //attach css styles to shadowroot
+    let style = document.createElement('style');
+    style.textContent = css;
+    this.shadowRoot.appendChild(style);
   }
 
   connectedCallback() {
-    console.log(`added`);
-
     this.logoElement = document.createElement('div');
     const element = document.createElement('div');
 
-    this.shadowRoot.append(element);
+    this.shadowRoot.appendChild(element);
+
     this.logo = new hmmLogo(element, {
       data: this.data,
       height_toggle: true,
       column_info: true,
     });
-    console.log("created logo");
 
   }
 
   disconnectedCallback() {
-    console.log("removed");
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

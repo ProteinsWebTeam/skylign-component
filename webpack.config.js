@@ -1,49 +1,59 @@
 const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  // entry: "./src/index.js",
-  // output: {
-  //   library: "skylign",
-  //   libraryTarget: 'umd',
-  //   libraryExport: 'default',
-  //   path: path.resolve(__dirname, 'dist'),
-  //   filename: "skylign.js",
-  // },
-  //plugins: [ new MiniCssExtractPlugin() ],
-  devtool: 'eval-source-map',
+  entry: './src/index.js',
+  mode: 'development',
+  devtool: 'inline-source-map',
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Skylign Development'
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
+  },
   devServer: {
-    // contentBase: [
-    //   path.join(__dirname, "dist")
-    // ],
+    contentBase: '/dist',
     port: 8765,
     overlay:{
       warnings: true,
       errors: true
     },
+    hot: true,
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', {
-          loader: 'css-loader',
+        use: [{
+          loader: 'raw-loader',
           options: {
-            modules: {
-                localIdentName: '[local]__[hash:base64:5]'
-            },
-            sourceMap: true,
+            // modules: {
+            //   localIdentName: '[local]__[hash:base64:5]'
+            // },
           }
         }],
       },
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: ['file-loader']
       }
     ],
   },

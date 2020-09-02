@@ -1,5 +1,4 @@
 import {EasyScroller} from 'easyscroller';
-import styles from './logo.css';
 
 const FEATURE_HEIGHT = 10;
 const MARGIN_TO_FEATURES = 10;
@@ -775,14 +774,14 @@ const HMMLogo = function(element, options = {}) {
     if (!canvas) {
       canvas = document.createElement('canvas');
       canvas.id = `canv_${id}`;
-      canvas.classList.add(styles.canvas_logo);
+      canvas.classList.add("canvas_logo");
       canvas.style.left = `${canvWidth * id}px`;
       canvas.setAttribute('width', width);
       canvas.setAttribute('height', height);
 
       DOMid.innerHTML = `
         <canvas
-          className=${styles.canvas_logo}
+          className="canvas_logo"
           id="canv_${id}"
           height="${height}"
           width="${width}"
@@ -951,7 +950,7 @@ const HMMLogo = function(element, options = {}) {
     // width of 0.
     if (!this.scrollme) {
       const logoGraphic = this.called_on.getElementsByClassName(
-        styles.logo_graphic,
+        "logo_graphic",
       )[0];
       this.scrollme = new EasyScroller(logoGraphic, {
         scrollingX: 1,
@@ -970,19 +969,19 @@ const HMMLogo = function(element, options = {}) {
     }
 
     for (const xElement of this.called_on.getElementsByClassName(
-      styles.logo_xaxis,
+      "logo_xaxis",
     )) {
       xElement.remove();
     }
     const axisDiv = document.createElement('div');
-    axisDiv.classList.add(styles.logo_xaxis);
+    axisDiv.classList.add("logo_xaxis");
     const axisP = document.createElement('p');
-    axisP.classList.add(styles.xaxis_text);
+    axisP.classList.add("xaxis_text");
     axisP.innerHTML = label;
     axisDiv.appendChild(axisP);
     this.called_on.insertBefore(
       axisDiv,
-      this.called_on.getElementsByClassName(styles.logo_container)[0],
+      this.called_on.getElementsByClassName("logo_container")[0],
     );
   };
 
@@ -990,16 +989,15 @@ const HMMLogo = function(element, options = {}) {
   this.render_y_axis_label = function() {
     // attach a canvas for the y-axis
     for (const yElement of this.called_on.getElementsByClassName(
-      styles.logo_yaxis,
+      "logo_yaxis",
     )) {
       yElement.remove();
     }
     for (const xAxis of this.called_on.getElementsByClassName(
-      styles.logo_xaxis,
+      "logo_xaxis",
     )) {
-      console.log(`X-axis: ${xAxis} => ${styles.logo_xaxis}`);
       const canvas = document.createElement('canvas');
-      canvas.classList.add(styles.logo_yaxis);
+      canvas.classList.add("logo_yaxis");
       canvas.height = 302;
       canvas.width = 55;
       xAxis.appendChild(canvas);
@@ -1500,7 +1498,7 @@ const HMMLogo = function(element, options = {}) {
     // with the new heights
     this.rendered = [];
     // update the y-axis
-    for (const element of document.getElementsByClassName(styles.logo_yaxis)) {
+    for (const element of document.getElementsByClassName("logo_yaxis")) {
       element.remove();
     }
     this.render_y_axis_label();
@@ -1552,7 +1550,7 @@ const HMMLogo = function(element, options = {}) {
     const colWidth = this.column_width * this.zoom;
     const colCount = beforeLeft / colWidth;
     const halfVisibleColumns =
-      this.called_on.getElementsByClassName(styles.logo_container)[0]
+      this.called_on.getElementsByClassName("logo_container")[0]
         .clientWidth /
       colWidth /
       2;
@@ -1583,10 +1581,10 @@ const HMMLogo = function(element, options = {}) {
 
     // see if we need to zoom or not
     const graphicalElement = this.called_on.getElementsByClassName(
-      styles.logo_graphic,
+      "logo_graphic",
     )[0];
     const containerElement = this.called_on.getElementsByClassName(
-      styles.logo_container,
+      "logo_container",
     )[0];
     const expectedWidth =
       (graphicalElement.clientWidth * zoomLevel) / this.zoom;
@@ -1629,7 +1627,7 @@ const HMMLogo = function(element, options = {}) {
 
   this.scrollToColumn = function(num, animate) {
     const halfView =
-      this.called_on.getElementsByClassName(styles.logo_container)[0]
+      this.called_on.getElementsByClassName("logo_container")[0]
         .clientWidth / 2;
     const newLeft = this.coordinatesFromColumn(num);
     this.scrollme.scroller.scrollTo(newLeft - halfView, 0, animate);
@@ -1645,12 +1643,12 @@ const HMMLogo = function(element, options = {}) {
 const hmmLogo = function(logoElement, options = {}) {
   // add some internal divs for scrolling etc.
   const logoGraphic = document.createElement('div');
-  logoGraphic.classList.add(styles.logo_graphic);
+  logoGraphic.classList.add("logo_graphic");
   const logoContainer = document.createElement('div');
-  logoContainer.classList.add(styles.logo_container);
+  logoContainer.classList.add("logo_container");
 
   const logoDivider = document.createElement('div');
-  logoDivider.classList.add(styles.logo_divider);
+  logoDivider.classList.add("logo_divider");
 
   logoElement.appendChild(logoContainer);
   logoContainer.appendChild(logoGraphic);
@@ -1671,29 +1669,29 @@ const hmmLogo = function(logoElement, options = {}) {
   const input = document.createElement('input');
   input.setAttribute('type', 'text');
   input.id = 'position';
-  input.classList.add(styles.logo_position);
+  input.classList.add("logo_position");
   fieldset.appendChild(input);
 
   const logoChangeButton = document.createElement('button');
-  logoChangeButton.classList.add(styles.button);
-  logoChangeButton.classList.add(styles.logo_change);
+  logoChangeButton.classList.add("button");
+  logoChangeButton.classList.add("logo_change");
   logoChangeButton.innerHTML = 'Go';
   fieldset.appendChild(logoChangeButton);
 
   const form = document.createElement('form');
-  form.classList.add(styles.logo_form);
+  form.classList.add("logo_form");
   form.appendChild(fieldset);
 
   const controls = document.createElement('div');
-  controls.classList.add(styles.logo_controls);
+  controls.classList.add("logo_controls");
   form.appendChild(controls);
 
   const close = document.createElement('span');
-  close.classList.add(styles.close);
+  close.classList.add("close");
   close.innerHTML = 'x';
 
   const settings = document.createElement('div');
-  settings.classList.add(styles.logo_settings);
+  settings.classList.add("logo_settings");
   settings.appendChild(close);
   controls.appendChild(settings);
 
@@ -1701,12 +1699,12 @@ const hmmLogo = function(logoElement, options = {}) {
   logo.render(options);
   if (logo.zoom_enabled) {
     const outButton = document.createElement('button');
-    outButton.classList.add(styles.button);
-    outButton.classList.add(styles.logo_zoomout);
+    outButton.classList.add("button");
+    outButton.classList.add("logo_zoomout");
     outButton.innerHTML = '-';
     const inButton = document.createElement('button');
-    inButton.classList.add(styles.button);
-    inButton.classList.add(styles.logo_zoomin);
+    inButton.classList.add("button");
+    inButton.classList.add("logo_zoomin");
     inButton.innerHTML = '+';
     controls.appendChild(outButton);
     controls.appendChild(inButton);
@@ -1743,8 +1741,8 @@ const hmmLogo = function(logoElement, options = {}) {
 
     const scaleControls =
       '<fieldset><legend>Scale</legend>' +
-      `<label><input type="radio" name="scale" class="${styles.logo_scale}" value="obs" ${obsChecked}/>Maximum Observed ${obsHelp}</label></br>` +
-      `<label><input type="radio" name="scale" class="${styles.logo_scale}" value="theory" ${theoryChecked}/>Maximum Theoretical ${theoryHelp}</label>` +
+      `<label><input type="radio" name="scale" class="logo_scale" value="obs" ${obsChecked}/>Maximum Observed ${obsHelp}</label></br>` +
+      `<label><input type="radio" name="scale" class="logo_scale" value="theory" ${theoryChecked}/>Maximum Theoretical ${theoryHelp}</label>` +
       '</fieldset>';
 
     settings.innerHTML += scaleControls;
@@ -1766,8 +1764,8 @@ const hmmLogo = function(logoElement, options = {}) {
 
     settings.innerHTML += `
       <fieldset><legend>Color Scheme</legend>
-        <label><input type="radio" name="color" class="${styles.logo_color}" value="default" ${defColor}/>Default</label></br>
-        <label><input type="radio" name="color" class="${styles.logo_color}" value="consensus" ${conColor}/>Consensus Colours</label>
+        <label><input type="radio" name="color" class="logo_color" value="default" ${defColor}/>Default</label></br>
+        <label><input type="radio" name="color" class="logo_color" value="consensus" ${conColor}/>Consensus Colours</label>
       </fieldset>
     `;
   }
@@ -1784,8 +1782,8 @@ const hmmLogo = function(logoElement, options = {}) {
 
     const aliControls =
       '<fieldset><legend>Coordinates</legend>' +
-      `<label><input type="radio" name="coords" class="${styles.logo_ali_map}" value="model" ${modChecked}/>Model</label></br>` +
-      `<label><input type="radio" name="coords" class="${styles.logo_ali_map}" value="alignment" ${aliChecked}/>Alignment</label>` +
+      `<label><input type="radio" name="coords" class="logo_ali_map" value="model" ${modChecked}/>Model</label></br>` +
+      `<label><input type="radio" name="coords" class="logo_ali_map" value="alignment" ${aliChecked}/>Alignment</label>` +
       '</fieldset>';
     settings.innerHTML += aliControls;
 
@@ -1795,7 +1793,7 @@ const hmmLogo = function(logoElement, options = {}) {
     ) {
       let activeSites =
         '<fieldset><legend>ActiveSites</legend>' +
-        `<label>Source: <select name="member_db" class="${styles.logo_ali_map}">`;
+        `<label>Source: <select name="member_db" class="logo_ali_map">`;
       for (const key of Object.keys(logo.active_sites_sources)) {
         activeSites += `<option value="${key}">${key}</option> `;
       }
@@ -1803,7 +1801,7 @@ const hmmLogo = function(logoElement, options = {}) {
         '</select></label> ' + // + modHelp +
         '</br>' +
         '<label>Accession number: ' +
-        `  <input type="text" name="family_accession" class="${styles.logo_ali_map}" value=""/>` +
+        `  <input type="text" name="family_accession" class="logo_ali_map" value=""/>` +
         '</label><br/>' +
         '<button id="active_sites">Get Active Sites</button>' +
         '</fieldset>';
@@ -1815,8 +1813,8 @@ const hmmLogo = function(logoElement, options = {}) {
   if (settings.children.length) {
     const settingsButton = document.createElement('button');
     settingsButton.innerHTML = 'Settings';
-    settingsButton.classList.add(styles.logo_settings_switch);
-    settingsButton.classList.add(styles.button);
+    settingsButton.classList.add("logo_settings_switch");
+    settingsButton.classList.add("button");
     -controls.appendChild(settingsButton);
     controls.appendChild(settings);
   }
@@ -1824,7 +1822,7 @@ const hmmLogo = function(logoElement, options = {}) {
   form.appendChild(controls);
   logoElement.appendChild(form);
 
-  for (const name of [styles.logo_settings_switch, styles.close]) {
+  for (const name of ["logo_settings_switch", "close"]) {
     for (const element of logoElement.getElementsByClassName(name)) {
       element.addEventListener('click', e => {
         e.preventDefault();
@@ -1833,7 +1831,7 @@ const hmmLogo = function(logoElement, options = {}) {
     }
   }
   for (const matchedElement of document.getElementsByClassName(
-    styles.logo_reset,
+    "logo_reset",
   )) {
     matchedElement.addEventListener('click', e => {
       e.preventDefault();
@@ -1841,14 +1839,14 @@ const hmmLogo = function(logoElement, options = {}) {
     });
   }
   for (const matchedElement of document.getElementsByClassName(
-    styles.logo_change,
+    "logo_change",
   )) {
     matchedElement.addEventListener('click', e => {
       e.preventDefault();
     });
   }
   for (const matchedElement of document.getElementsByClassName(
-    styles.logo_zoomin,
+    "logo_zoomin",
   )) {
     matchedElement.addEventListener('click', e => {
       e.preventDefault();
@@ -1856,7 +1854,7 @@ const hmmLogo = function(logoElement, options = {}) {
     });
   }
   for (const matchedElement of document.getElementsByClassName(
-    styles.logo_zoomout,
+    "logo_zoomout",
   )) {
     matchedElement.addEventListener('click', e => {
       e.preventDefault();
@@ -1864,28 +1862,28 @@ const hmmLogo = function(logoElement, options = {}) {
     });
   }
   for (const matchedElement of document.getElementsByClassName(
-    styles.logo_scale,
+    "logo_scale",
   )) {
     matchedElement.addEventListener('change', function() {
       logo.toggle_scale(this.value); // MAQ pass correct argument
     });
   }
   for (const matchedElement of document.getElementsByClassName(
-    styles.logo_color,
+    "logo_color",
   )) {
     matchedElement.addEventListener('change', function() {
       logo.toggle_colorscheme(this.value); // MAQ pass correct argument
     });
   }
   for (const matchedElement of document.getElementsByClassName(
-    styles.logo_ali_map,
+    "logo_ali_map",
   )) {
     matchedElement.addEventListener('change', function() {
       logo.toggle_ali_map(this.value);
     });
   }
   for (const matchedElement of document.getElementsByClassName(
-    styles.logo_position,
+    "logo_position",
   )) {
     matchedElement.addEventListener('change', function() {
       if (!this.value.match(/^\d+$/m)) {
@@ -1918,8 +1916,8 @@ const hmmLogo = function(logoElement, options = {}) {
     // eslint-disable-next-line max-statements
     logoGraphic.addEventListener('click', e => {
       const infoTab = document.createElement('table');
-      infoTab.classList.add(styles.logo_col_info);
-      infoTab.classList.add(styles.logo_col_hmm);
+      infoTab.classList.add("logo_col_info");
+      infoTab.classList.add("logo_col_hmm");
       const hmmLogo = logo;
       let header = '<tr>';
       let tbody = '';
@@ -1975,11 +1973,11 @@ const hmmLogo = function(logoElement, options = {}) {
           // using the j < 15 check to make sure the last column doesn't get marked
           // with the odd class so we don't get a border on the edge of the table.
           if (infoCols > 1 && j < 15) {
-            tbody += `<td class="${styles[color]}"><div></div>${
+            tbody += `<td class="color"><div></div>${
               values[0]
             }</td><td class="odd">${values[1]}</td>`;
           } else {
-            tbody += `<td class="${styles[color]}"><div></div>${
+            tbody += `<td class="color}"><div></div>${
               values[0]
             }</td><td>${values[1]}</td>`;
           }
