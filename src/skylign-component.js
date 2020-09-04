@@ -15,13 +15,12 @@ class Skylign extends HTMLElement {
 
   showLogo() {
     this.logoElement = document.createElement('div');
-    const element = document.createElement('div');
 
-    this.shadowRoot.appendChild(element);
+    this.shadowRoot.appendChild(this.logoElement);
 
     const logo = this.getAttribute("logo");
     if (logo) {
-      this.logo = new hmmLogo(element, {
+      this.logo = new hmmLogo(this.logoElement, {
         data: JSON.parse(logo),
         height_toggle: true,
         column_info: true,
@@ -29,17 +28,14 @@ class Skylign extends HTMLElement {
     }
   }
 
-  connectedCallback() {
-    this.showLogo();
-  }
+  connectedCallback() {}
 
-  disconnectedCallback() {
-  }
+  disconnectedCallback() {}
 
   attributeChangedCallback(name, oldValue, newValue) {
-    console.log("attribute changed");
+    console.log(`attributeChangedCallback: '${name}'`);
     if (name === "logo" && oldValue !== newValue) {
-      this.logElement.remove();
+      this.logoElement?.remove();
       this.showLogo();
     }
   }
