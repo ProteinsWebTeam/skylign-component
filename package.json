@@ -10,7 +10,7 @@
     "src"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "jest --env=jest-environment-happy-dom",
     "build": "webpack",
     "dev": "webpack-dev-server --mode development --open"
   },
@@ -34,6 +34,9 @@
     "url": "https://github.com/ProteinsWebTeam/skylign-component/issues"
   },
   "homepage": "https://github.com/ProteinsWebTeam/skylign-component#readme",
+  "browserslist": [
+    "since 2017-06"
+  ],
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.4.4",
     "easyscroller": "^1.0.1",
@@ -53,12 +56,24 @@
     "handlebars": "^4.7.6",
     "handlebars-loader": "^1.7.1",
     "html-webpack-plugin": "^4.4.1",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^26.4.1",
+    "jest-environment-happy-dom": "0.0.43",
+    "jest-puppeteer": "^4.4.0",
+    "jsdom": "^16.4.0",
     "mini-css-extract-plugin": "^0.10.0",
+    "puppeteer": "^5.3.0",
     "raw-loader": "^4.0.1",
     "style-loader": "^1.2.1",
     "to-string-loader": "^1.1.6",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
+  },
+  "jest": {
+    "testEnvironment": "jest-environment-happy-dom",
+    "moduleNameMapper": {
+      "\\.(css)$": "identity-obj-proxy"
+    },
+    "verbose": true
   }
 }
