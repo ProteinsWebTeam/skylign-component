@@ -34,11 +34,6 @@ module.exports = {
         test: /\.css$/,
         use: [{
           loader: 'raw-loader',
-          options: {
-            // modules: {
-            //   localIdentName: '[local]__[hash:base64:5]'
-            // },
-          }
         }],
       },
       {
