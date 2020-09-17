@@ -1,10 +1,10 @@
 {
   "name": "skylign",
-  "version": "0.0.1",
+  "version": "0.9.1",
   "description": "A component for viewing Skylign Protein HMM Logos ",
   "type": "module",
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "dist/main.js",
+  "module": "dist/main.js",
   "files": [
     "dist",
     "src"

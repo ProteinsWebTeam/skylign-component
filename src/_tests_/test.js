@@ -9,5 +9,5 @@ test("Instantiate skylign", () => {
 
 // test("Set logo attribute", () => {
 //   const skylign = document.createElement('skylign-component');
-//
+//   skylign.setAttribute('logo', JSON.stringify(pf1));
 // });

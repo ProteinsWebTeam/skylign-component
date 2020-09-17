@@ -35,7 +35,9 @@ class Skylign extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     console.log(`attributeChangedCallback: '${name}'`);
     if (name === "logo" && oldValue !== newValue) {
-      this.logoElement?.remove();
+      if (this.logoElement) {
+        this.logoElement.remove();
+      }      
       this.showLogo();
     }
   }
