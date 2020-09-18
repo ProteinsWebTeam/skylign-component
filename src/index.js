@@ -13,4 +13,5 @@ if (window.customElements) {
     loadComponent();
   });
 }
+
 export default Skylign;
