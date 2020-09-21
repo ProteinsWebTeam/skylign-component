@@ -1,4 +1,5 @@
 import {EasyScroller} from 'easyscroller';
+import $ from 'jquery';
 
 const FEATURE_HEIGHT = 10;
 const MARGIN_TO_FEATURES = 10;
@@ -1559,6 +1560,7 @@ const HMMLogo = function(element, options = {}) {
 
   // eslint-disable-next-line max-statements
   this.change_zoom = function(options) {
+    console.log("change zoom");
     let zoomLevel = 0.3;
     if (options.target) {
       zoomLevel = options.target;
@@ -1702,10 +1704,19 @@ const hmmLogo = function(logoElement, options = {}) {
     outButton.classList.add("button");
     outButton.classList.add("logo_zoomout");
     outButton.innerHTML = '-';
+    outButton.addEventListener('click', e => {
+          e.preventDefault();
+          logo.change_zoom({ distance: 0.1, direction: '-' });
+        });
+
     const inButton = document.createElement('button');
     inButton.classList.add("button");
     inButton.classList.add("logo_zoomin");
     inButton.innerHTML = '+';
+    inButton.addEventListener('click', e => {
+      e.preventDefault();
+      logo.change_zoom({ distance: 0.1, direction: '+' });
+    });
     controls.appendChild(outButton);
     controls.appendChild(inButton);
   }
@@ -1821,7 +1832,7 @@ const hmmLogo = function(logoElement, options = {}) {
 
   form.appendChild(controls);
   logoElement.appendChild(form);
-
+  console.log("MAQ adding listeners");
   for (const name of ["logo_settings_switch", "close"]) {
     for (const element of logoElement.getElementsByClassName(name)) {
       element.addEventListener('click', e => {
@@ -1830,7 +1841,7 @@ const hmmLogo = function(logoElement, options = {}) {
       });
     }
   }
-  for (const matchedElement of document.getElementsByClassName(
+  for (const matchedElement of controls.getElementsByClassName(
     "logo_reset",
   )) {
     matchedElement.addEventListener('click', e => {
@@ -1838,51 +1849,36 @@ const hmmLogo = function(logoElement, options = {}) {
       logo.change_zoom({ target: logo.default_zoom });
     });
   }
-  for (const matchedElement of document.getElementsByClassName(
+  for (const matchedElement of controls.getElementsByClassName(
     "logo_change",
   )) {
     matchedElement.addEventListener('click', e => {
       e.preventDefault();
     });
   }
-  for (const matchedElement of document.getElementsByClassName(
-    "logo_zoomin",
-  )) {
-    matchedElement.addEventListener('click', e => {
-      e.preventDefault();
-      logo.change_zoom({ distance: 0.1, direction: '+' });
-    });
-  }
-  for (const matchedElement of document.getElementsByClassName(
-    "logo_zoomout",
-  )) {
-    matchedElement.addEventListener('click', e => {
-      e.preventDefault();
-      logo.change_zoom({ distance: 0.1, direction: '-' });
-    });
-  }
-  for (const matchedElement of document.getElementsByClassName(
+
+  for (const matchedElement of controls.getElementsByClassName(
     "logo_scale",
   )) {
     matchedElement.addEventListener('change', function() {
       logo.toggle_scale(this.value); // MAQ pass correct argument
     });
   }
-  for (const matchedElement of document.getElementsByClassName(
+  for (const matchedElement of controls.getElementsByClassName(
     "logo_color",
   )) {
     matchedElement.addEventListener('change', function() {
       logo.toggle_colorscheme(this.value); // MAQ pass correct argument
     });
   }
-  for (const matchedElement of document.getElementsByClassName(
+  for (const matchedElement of controls.getElementsByClassName(
     "logo_ali_map",
   )) {
     matchedElement.addEventListener('change', function() {
       logo.toggle_ali_map(this.value);
     });
   }
-  for (const matchedElement of document.getElementsByClassName(
+  for (const matchedElement of controls.getElementsByClassName(
     "logo_position",
   )) {
     matchedElement.addEventListener('change', function() {
@@ -2018,5 +2014,6 @@ const hmmLogo = function(logoElement, options = {}) {
 
   return logo;
 };
+
 
 export default hmmLogo;
