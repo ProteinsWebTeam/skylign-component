@@ -1,5 +1,4 @@
 import {EasyScroller} from 'easyscroller';
-import $ from 'jquery';
 
 const FEATURE_HEIGHT = 10;
 const MARGIN_TO_FEATURES = 10;
@@ -1560,7 +1559,6 @@ const HMMLogo = function(element, options = {}) {
 
   // eslint-disable-next-line max-statements
   this.change_zoom = function(options) {
-    console.log("change zoom");
     let zoomLevel = 0.3;
     if (options.target) {
       zoomLevel = options.target;
@@ -1634,6 +1632,7 @@ const HMMLogo = function(element, options = {}) {
     const newLeft = this.coordinatesFromColumn(num);
     this.scrollme.scroller.scrollTo(newLeft - halfView, 0, animate);
   };
+
   this.refresh = function() {
     this.rendered = [];
     this.scrollme.reflow();
@@ -1665,7 +1664,7 @@ const hmmLogo = function(logoElement, options = {}) {
 
   const label = document.createElement('label');
   label.htmlFor = 'position';
-  label.innerHTML = 'Column number';
+  label.innerHTML = 'Model column';
   fieldset.appendChild(label);
 
   const input = document.createElement('input');
@@ -1682,6 +1681,7 @@ const hmmLogo = function(logoElement, options = {}) {
 
   const form = document.createElement('form');
   form.classList.add("logo_form");
+  form.addEventListener('submit', (e) => e.preventDefault);
   form.appendChild(fieldset);
 
   const controls = document.createElement('div');
@@ -1832,7 +1832,6 @@ const hmmLogo = function(logoElement, options = {}) {
 
   form.appendChild(controls);
   logoElement.appendChild(form);
-  console.log("MAQ adding listeners");
   for (const name of ["logo_settings_switch", "close"]) {
     for (const element of logoElement.getElementsByClassName(name)) {
       element.addEventListener('click', e => {
@@ -1849,26 +1848,24 @@ const hmmLogo = function(logoElement, options = {}) {
       logo.change_zoom({ target: logo.default_zoom });
     });
   }
-  for (const matchedElement of controls.getElementsByClassName(
+  for (const matchedElement of fieldset.getElementsByClassName(
     "logo_change",
   )) {
-    matchedElement.addEventListener('click', e => {
-      e.preventDefault();
-    });
+    matchedElement.addEventListener('click', e => e.preventDefault());
   }
 
   for (const matchedElement of controls.getElementsByClassName(
     "logo_scale",
   )) {
     matchedElement.addEventListener('change', function() {
-      logo.toggle_scale(this.value); // MAQ pass correct argument
+      logo.toggle_scale(this.value);
     });
   }
   for (const matchedElement of controls.getElementsByClassName(
     "logo_color",
   )) {
     matchedElement.addEventListener('change', function() {
-      logo.toggle_colorscheme(this.value); // MAQ pass correct argument
+      logo.toggle_colorscheme(this.value);
     });
   }
   for (const matchedElement of controls.getElementsByClassName(
@@ -1878,10 +1875,10 @@ const hmmLogo = function(logoElement, options = {}) {
       logo.toggle_ali_map(this.value);
     });
   }
-  for (const matchedElement of controls.getElementsByClassName(
+  for (const matchedElement of fieldset.getElementsByClassName(
     "logo_position",
   )) {
-    matchedElement.addEventListener('change', function() {
+    matchedElement.addEventListener('change', function(e) {
       if (!this.value.match(/^\d+$/m)) {
         return;
       }
@@ -1987,7 +1984,7 @@ const hmmLogo = function(logoElement, options = {}) {
 
       const columnInfo = document.createElement('div');
       columnInfo.id = 'logo_column_info';
-      columnInfo.innerHTML = `<div style="text-align: center;"><span>Column:${col} &nbsp;</span>
+      columnInfo.innerHTML = `<div style="text-align: center;"><span>Model Column:${col} &nbsp;</span>
       <span>Occupancy: ${logo.data.delete_probs[col - 1]}  &nbsp;</span>
       <span>Insert Probability: ${logo.data.insert_probs[col - 1]} &nbsp;</span>
       <span>Insert Length: ${
