@@ -1,26 +1,45 @@
+import hmmLogo from './skylign.js';
+import css from './logo.css';
+
 class Skylign extends HTMLElement {
+  static get observedAttributes() { return ['logo']; }
+
   constructor(...args) {
-    super(...args);
+    super();
     this.attachShadow({mode: 'open'});
-    //test
-    const test = document.createElement('span');
-    test.innerHTML = "Testing span";
-    this.shadowRoot.append(test);
+    //attach css styles to shadowroot
+    let style = document.createElement('style');
+    style.textContent = css;
+    this.shadowRoot.appendChild(style);
   }
 
-  connectedCallback() {
-    console.log(`added ${self.isConnected}`);
+  showLogo() {
+    this.logoElement = document.createElement('div');
+
+    this.shadowRoot.appendChild(this.logoElement);
+
+    const logo = this.getAttribute("logo");
+    if (logo) {
+      this.logo = new hmmLogo(this.logoElement, {
+        data: JSON.parse(logo),
+        height_toggle: true,
+        column_info: true,
+      });
+    }
   }
 
-  disconnectedCallback() {
-    console.log("removed");
-  }
+  connectedCallback() {}
+
+  disconnectedCallback() {}
 
   attributeChangedCallback(name, oldValue, newValue) {
-    console.log("attribute changed");
+    if (name === "logo" && oldValue !== newValue) {
+      if (this.logoElement) {
+        this.logoElement.remove();
+      }
+      this.showLogo();
+    }
   }
-
-
 }
 
 export default Skylign;
